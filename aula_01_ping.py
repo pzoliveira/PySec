@@ -1,5 +1,6 @@
 import os
 
-dstpng = input('Enter hostname ou IP address: ')
+if __name__ == '__main__':
+    dstpng = input('Enter hostname ou IP address: ')
 
-os.system('ping -n 5 {}'.format(dstpng))
+    os.system('ping -n 5 {}'.format(dstpng))
