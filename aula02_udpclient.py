@@ -1,21 +1,17 @@
 import socket
 
 if __name__ == '__main__':
-    try:
-        sckt = socket.socket(socket.AF_INET, socket.DGRAM)
-        print('Socket creation successful!!!')
-    except socket.error as e:
-        print('Socket creation failed!')
-        print('Error details: {}'.format(e))
+    sckt = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    print('Socket creation successful!!!')
 
     hst = 'localhost'
-    prt = 5433
-    mssg = 'This is a test message'
+    prt = 5432
+    mssg = 'Do not be afraid.'
     try:
-        print('Client has sent the following message: ' + mssg)
-        sckt.sendto(mssg.encode(), (hst, 5432))
+        print('Client has sent: ' + mssg)
+        sckt.sendto(mssg.encode(), (hst, prt))
         dtrcv, srvr = sckt.recvfrom(4096)
-        print('Client has received the following message: ' + dtrcv)
+        print('Client has received: ' + dtrcv.decode())
     finally:
         print('Closing socket connection...')
         sckt.close()
